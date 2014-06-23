@@ -40,6 +40,8 @@ function BoxViewer (apiKey){
 		return request[method](options, callback);
 	}
 }
+
+BoxViewer.prototype.fileTypes = ['doc','docx','pdf','ppt','pptx'];
    
 /**
  * Return the list of uploaded documents
@@ -60,7 +62,7 @@ BoxViewer.prototype.getList = function(params, callback){
 	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(JSON.parse(body));	    
 		   callback(null, JSON.parse(body));			    	
@@ -86,7 +88,7 @@ BoxViewer.prototype.uploadFile = function(filePath, options, callback){
 		var req = _this.request(documentUploadUrl, {}, 'post', function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(body);	    
 		   callback(null, JSON.parse(body));			    	
@@ -115,8 +117,8 @@ BoxViewer.prototype.uploadFromUrl = function(url, callback){
 		function(err, res, body){
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
-		    if(res.statusCode == 400)
+	  		//console.log('STATUS: ' + res.statusCode);
+		   if(res.statusCode == 400)
 		    	return callback(body);	    
 		   callback(null, JSON.parse(body));
 	 	});
@@ -137,7 +139,7 @@ BoxViewer.prototype.getDocument = function(id, fields, callback){
 	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(JSON.parse(body));	    
 		   callback(null, body);			    	
@@ -160,7 +162,7 @@ BoxViewer.prototype.getDocumentContent = function(id, destPath, zip, callback){
 	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(JSON.parse(body));
 		   fs.writeFile(destPath, body, function(err) {
@@ -192,7 +194,7 @@ BoxViewer.prototype.getDocumentThumbnail = function(id, width, height, destPath,
 	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(body);	    
 		   fs.writeFile(destPath, body, function(err) {
@@ -219,14 +221,14 @@ BoxViewer.prototype.updateDocument = function(id, data, callback){
  				'Content-Type': 'application/json'
 	    	},
 	    	body: JSON.stringify({name: data.name})
-	    }, function(err, res, body){    	
+	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
-		    if(res.statusCode == 400)
+	  		//console.log('STATUS: ' + res.statusCode);
+		   if(res.statusCode == 400)
 		    	return callback(JSON.parse(body));	    
-		    callback(null, body);			    	
-	    });
+		   callback(null, body);			    	
+	   });
 }
 
 /**
@@ -243,7 +245,7 @@ BoxViewer.prototype.deleteDocument = function(id, callback){
 	   }, function(err, res, body){    	
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
+	  		//console.log('STATUS: ' + res.statusCode);
 		   if(res.statusCode == 400)
 		    	return callback(JSON.parse(body));	    
 		   callback(null, id);			    	
@@ -266,9 +268,11 @@ BoxViewer.prototype.getDocumentSession = function(id, callback){
 	   }, function(err, res, body){
 	  		if(err)
 	  			return callback(err);
-	  		console.log('STATUS: ' + res.statusCode);
-		    if(res.statusCode == 400)
-		    	return callback(body);	    
+	  		
+		   if(res.statusCode == 400)
+		    	return callback(body);
+		   if(res.statusCode == 202)
+		   	return callback(null, {retryAfter: res.headers['Retry-After']});   
 		   callback(null, JSON.parse(body));			    	
 	   });
 }
