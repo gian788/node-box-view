@@ -44,10 +44,10 @@ Response example:
 	}
 ```
 
-### getDocument(DOCUMENT_ID, fields, callback)
+### getDocument(documentId, fields, callback)
 Retrieves the metadata for a single document.
 
-* `DOCUMENT_ID` - Document ID
+* `documentId` - Document ID
 * `fields` ()- Array of fields to return (id and type are always) 
 * `callback (function)` - A callback with the following arguments:
 	- an error object or `null`
@@ -57,7 +57,7 @@ Response example:
 ```json
 	{
 		"type": "document",
-		"id": DOCUMENT_ID,
+		"id": documentId,
 		"status": "done",
 		"name": "Leaves of Grass",
 		"created_at": "2013-08-30T00:17:37Z"
@@ -110,11 +110,11 @@ Response example:
 	}
 ```
 
-### getDocumentThumbnail(DOCUMENT_ID, width, height, file, callback)
+### getDocumentThumbnail(documentId, width, height, file, callback)
 Retrieve a thumbnail image of the first page of a document. 
 Thumbnails can have a width between 16 and 1024 pixels and a height between 16 and 768 pixels.
 
-* `DOCUMENT_ID (string)` - Document ID.
+* `documentId (string)` - Document ID.
 * `width (int)` - The width of the thumbnail in pixels, between 16 and 1024
 * `heigth (int)` - The height of the thumbnail in pixels, between 16 and 768
 * `file (string)` - Thumbnail destination file path
@@ -122,28 +122,28 @@ Thumbnails can have a width between 16 and 1024 pixels and a height between 16 a
 	- an error object or `null`
 	- JSON-parsed response data
 
-### updateDocument(DOCUMENT_ID, options, callback)
+### updateDocument(documentId, options, callback)
 Updates the metadata of a specific document.
 
-* `DOCUMENT_ID (string)` - Document ID
+* `documentId (string)` - Document ID
 * `options (object)`:
 	- `name (string)` - The name of the document
 * `callback (function)` - A callback with the following arguments:
 	- an error object or `null`
 	- JSON-parsed response data
 
-### deleteDocument(DOCUMENT_ID, callback)
+### deleteDocument(documentId, callback)
 Removes a document completely from the View API servers.
 
-* `DOCUMENT_ID (string)` - Document ID.
+* `documentId (string)` - Document ID.
 * `callback (function)` - A callback with the following arguments:
 	- an error object or `null`
 	- JSON-parsed response data
 
-### getDocumentSession(DOCUMENT_ID, callback)
+### getDocumentSession(documentId, callback)
 Create a session to view the document.
 
-* `DOCUMENT_ID (string)` - Document ID.
+* `documentId (string)` - Document ID.
 * `callback (function)` - A callback with the following arguments:
 	- an error object or `null`
 	- JSON-parsed response data
