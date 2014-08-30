@@ -1,7 +1,7 @@
 {
   "name": "node-box-view",
   "description": "Node.js client library for Box View API.",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "keywords": ["box-view-api", "box-view", "box", "crocodoc", "client", "api"],
   "bugs": { "url" : "https://github.com/gian788/node-box-view/issues"},
   "license": "MIT",
