@@ -72,6 +72,7 @@ BoxViewer.prototype.getList = function(params, callback){
 /**
  * Upload file from disk
  * @param file 		string 		file path
+ * @param options	object 		options object
  * @param callback	function 	callback function
  */
 BoxViewer.prototype.uploadFile = function(filePath, options, callback){
@@ -94,8 +95,14 @@ BoxViewer.prototype.uploadFile = function(filePath, options, callback){
 		   callback(null, JSON.parse(body));			    	
     	});
 
+		var formData = {name: options.fileName};
+		if(options.non_svg)
+			formData.non_svg = true;
+		if(options.thumbnails)
+			formData.thumbnails = options.thumbnails;
+
 		var form = req.form();
-		form.append('file', new Buffer(doc), {filename: options.fileName});
+		form.append('file', new Buffer(doc), formData);
 		form.append('parent_id', 0);
 	});	
 }
@@ -103,30 +110,43 @@ BoxViewer.prototype.uploadFile = function(filePath, options, callback){
 /**
  * Upload file from url
  * @param file 		string 		file path
+ * @param options	object 		options object
  * @param callback	function 	callback function
  */
-BoxViewer.prototype.uploadFromUrl = function(url, callback){
+BoxViewer.prototype.uploadFromUrl = function(url, options, callback){
+	if(!options.fileName){
+		var temp = filePath.split('/')
+		options.fileName = temp[temp.length - 1];
+	}
+
+	var body = {url: url, name: options.fileName};
+	if(options.non_svg)
+		body.non_svg = true;
+	if(options.thumbnails)
+		body.thumbnails = options.thumbnails;
+
 	request.post({
 			url: documentUrl,
 			headers: { 
 	    		'Authorization': 'Token ' + this.apiKey,
 	    		'Content-Type': 'application/json'
 	    	},
-	    	body: JSON.stringify({url: url})
+	    	body: JSON.stringify(body)
 		},
 		function(err, res, body){
 	  		if(err)
 	  			return callback(err);
 	  		//console.log('STATUS: ' + res.statusCode);
-		   if(res.statusCode == 400)
+		   	if(res.statusCode == 400)
 		    	return callback(body);	    
-		   callback(null, JSON.parse(body));
+		   	callback(null, JSON.parse(body));
 	 	});
 }
 
 /**
  * Get document meta
- * @param id 			Number 		document id
+ * @param id 		Number 		document id
+ * @param fields	Array 		list of fields to return
  * @param callback	Function 	callback function
  */
 BoxViewer.prototype.getDocument = function(id, fields, callback){	
