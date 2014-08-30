@@ -15,20 +15,16 @@ var boxViewLib = require('node-box-view'),
 ```
 For general API documentaion, please review the [Box View API Documentation](https://developers.box.com/view).
 
-### getList
-```js
-	boxView.getList(options, callback)
-```
+### getList(options, callback)
 Fetches a list of all documents uploaded using this API Key.
 
-`options (object)`:
-* `limit (int)` - The number of documents to return (default=10, max=50)
-* `created_before (Date)` - An upper limit on the creation timestamps of documents returned (default=now)
-* `created_after (Date)` - A lower limit on the creation timestamps of documents returned
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
+* `options (object)`:
+	- `limit (int)` - The number of documents to return (default=10, max=50)
+	- `created_before (Date)` - An upper limit on the creation timestamps of documents returned (default=now)
+	- `created_after (Date)` - A lower limit on the creation timestamps of documents returned
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
 Response example:
 ```json
@@ -48,19 +44,14 @@ Response example:
 	}
 ```
 
-### getDocument
-```js
-	boxView.getDocument(DOCUMENT_ID, fields, callback)
-```
+### getDocument(DOCUMENT_ID, fields, callback)
 Retrieves the metadata for a single document.
 
-`DOCUMENT_ID` - Document ID
-
-`fields` ()- Array of fields to return (id and type are always) 
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
+* `DOCUMENT_ID` - Document ID
+* `fields` ()- Array of fields to return (id and type are always) 
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
 Response example:
 ```json
@@ -73,22 +64,17 @@ Response example:
 	}
 ```
 
-### uploadFile
-```js
-	boxView.uploadFile(file_path, options, function(err, res){
-```
+### uploadFile(file_path, options, callback)
 Uploading a document from url.
 
-`file_path (string)` - A path to a file to read
-
-`options (object)`:
-* `fileName (string)` - The name of the file. If options.params.name is not set, it will be inferred from the file path.
-* `thumnails(string)` - Comma-separated list of thumbnail dimensions of the format {width}x{height} (e.g. '128×128,256×256') – width can be between 16 and 1024, height between 16 and 768
-* `non_svg (boolean)` - Whether to also create the non-svg version of the document, default=false. [read more here](https://developers.box.com/view/#non-svg)
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
+* `file_path (string)` - A path to a file to read
+* `options (object)`:
+	- `fileName (string)` - The name of the file. If options.params.name is not set, it will be inferred from the file path.
+	- `thumnails(string)` - Comma-separated list of thumbnail dimensions of the format {width}x{height} (e.g. '128×128,256×256') – width can be between 16 and 1024, height between 16 and 768
+	- `non_svg (boolean)` - Whether to also create the non-svg version of the document, default=false. [read more here](https://developers.box.com/view/#non-svg)
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
 Response example:
 ```json
@@ -101,22 +87,17 @@ Response example:
 	}
 ```
 
-### uploadFromUrl
-```js
-	boxView.uploadFromUrl(url, callback)
-```
+### uploadFromUrl(url, callback)
 Uploading a document from file.
 
-`url (string)` - The URL of the document to be converted.
-
-`options (object)`:
-* `fileName (string)` - The name of the file. If options.params.name is not set, it will be inferred from the file path.
-* `thumnails(string)` - Comma-separated list of thumbnail dimensions of the format {width}x{height} (e.g. '128×128,256×256') – width can be between 16 and 1024, height between 16 and 768
-* `non_svg (boolean)` - Whether to also create the non-svg version of the document, default=false. [read more here](https://developers.box.com/view/#non-svg)
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
+* `url (string)` - The URL of the ocument to be converted.
+* `options (object)`:
+	- `fileName (string)` - The name of the file. If options.params.name is not set, it will be inferred from the file path.
+	- `thumnails(string)` - Comma-separated list of thumbnail dimensions of the format {width}x{height} (e.g. '128×128,256×256') – width can be between 16 and 1024, height between 16 and 768
+	- `non_svg (boolean)` - Whether to also create the non-svg version of the document, default=false. [read more here](https://developers.box.com/view/#non-svg)
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
 Response example:
 ```json
@@ -128,60 +109,41 @@ Response example:
 		"created_at": "2013-08-30T00:17:37Z"
 	}
 ```
-### getDocumentThumbnail
-```js
-	boxView.getDocumentThumbnail(DOCUMENT_ID, width, height, file, callback);
-```
+
+### getDocumentThumbnail(DOCUMENT_ID, width, height, file, callback)
 Retrieve a thumbnail image of the first page of a document. 
 Thumbnails can have a width between 16 and 1024 pixels and a height between 16 and 768 pixels.
 
-`DOCUMENT_ID (string)` - Document ID.
+* `DOCUMENT_ID (string)` - Document ID.
+* `width (int)` - The width of the thumbnail in pixels, between 16 and 1024
+* `heigth (int)` - The height of the thumbnail in pixels, between 16 and 768
+* `file (string)` - Thumbnail destination file path
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
-`width (int)` - The width of the thumbnail in pixels, between 16 and 1024
-
-`heigth (int)` - The height of the thumbnail in pixels, between 16 and 768
-
-`file (string)` - Thumbnail destination file path
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
-
-### updateDocument
-```js
-	boxView.updateDocument(DOCUMENT_ID, options, callback);
-```
+### updateDocument(DOCUMENT_ID, options, callback)
 Updates the metadata of a specific document.
 
-`DOCUMENT_ID (string)` - Document ID.
+* `DOCUMENT_ID (string)` - Document ID
+* `options (object)`:
+	- `name (string)` - The name of the document
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
-`options (object)`:
-*`name (string)` - The name of the document
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
-
-### deleteDocument
-```js
-	boxView.deleteDocument(DOCUMENT_ID, callback);
-```
+### deleteDocument(DOCUMENT_ID, callback)
 Removes a document completely from the View API servers.
 
-`DOCUMENT_ID (string)` - Document ID.
+* `DOCUMENT_ID (string)` - Document ID.
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
 
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
-
-### getDocumentSession
-```js
-	boxView.getDocumentSession(DOCUMENT_ID, callback);
-```
+### getDocumentSession(DOCUMENT_ID, callback)
 Create a session to view the document.
 
-`DOCUMENT_ID (string)` - Document ID.
-
-`callback (function)` - A callback with the following arguments:
-* an error object or `null`
-* JSON-parsed response data
+* `DOCUMENT_ID (string)` - Document ID.
+* `callback (function)` - A callback with the following arguments:
+	- an error object or `null`
+	- JSON-parsed response data
