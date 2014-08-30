@@ -17,10 +17,23 @@ var boxViewLib = require('node-box-view'),
 # Documentation
 For general API documentaion, please review the [Box View API Documentation](https://developers.box.com/view).
 
-Fetches a list of all documents uploaded
+### getList
 ```js
-boxView.getList({}, function(err, res){
-	/* Example Response 
+	boxView.getList(options, callback)
+```
+Fetches a list of all documents uploaded using this API Key.
+
+`options (object)`:
+* `limit (int)` - The number of documents to return (default=10, max=50)
+* `created_before (Date)` - An upper limit on the creation timestamps of documents returned (default=now)
+* `created_after (Date)` - A lower limit on the creation timestamps of documents returned
+
+`callback (function)` A callback with the following arguments:
+* an error object or `null`
+* JSON-parsed response data
+
+Response example:
+```json
 	{
 		"document_collection": {
 			"total_count": 1,
@@ -35,8 +48,7 @@ boxView.getList({}, function(err, res){
 				]
 			}
 	}
-	*/
-});
+```
 ```
 Retrieves the metadata for a single document.
 ```js
