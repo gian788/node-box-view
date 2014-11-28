@@ -15,6 +15,25 @@ FILE TYPE	MIME TYPE
 .docx	application/vnd.openxmlformats-officedocument.wordprocessingml.document
 .ppt	application/vnd.ms-powerpoint
 .pptx	application/vnd.openxmlformats-officedocument.presentationml.presentation
+.xls	application/vnd.ms-excel
+.xlsx	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+.txt	text/plain
+.txt	text/plain
+.py	application/x-python
+.py	text/x-python
+.py	text/x-script.python
+.js	text/javascript
+.js	application/x-javascript
+.js	application/javascript
+.xml	text/xml
+.xml	application/xml
+.html	text/html
+.css	text/css
+.md	text/x-markdown
+.pl	text/x-script.perl
+.c	text/x-c
+.m	text/x-m
+.json	application/json
 */
 
 module.exports = BoxViewer;
@@ -41,7 +60,8 @@ function BoxViewer (apiKey){
 	}
 }
 
-BoxViewer.prototype.fileTypes = ['doc','docx','pdf','ppt','pptx'];
+BoxViewer.prototype.fileTypes = ['pdf', 'doc', 'docx', 'ppt','pptx', 'xls', 'xlsx', 'txt', 'py', 
+								 'js', '.xml', '.html', '.css', '.md', '.pl', '.c', '.m', '.json'];
    
 /**
  * Return the list of uploaded documents
