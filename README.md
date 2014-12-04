@@ -57,7 +57,7 @@ Response example:
 ```json
 	{
 		"type": "document",
-		"id": documentId,
+		"id": "documentId",
 		"status": "done",
 		"name": "Leaves of Grass",
 		"created_at": "2013-08-30T00:17:37Z"
