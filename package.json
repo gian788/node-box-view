@@ -1,9 +1,18 @@
 {
   "name": "node-box-view",
   "description": "Node.js client library for Box View API.",
-  "version": "0.1.9",
-  "keywords": ["box-view-api", "box-view", "box", "crocodoc", "client", "api"],
-  "bugs": { "url" : "https://github.com/gian788/node-box-view/issues"},
+  "version": "0.2.0",
+  "keywords": [
+    "box-view-api",
+    "box-view",
+    "box",
+    "crocodoc",
+    "client",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/gian788/node-box-view/issues"
+  },
   "license": "MIT",
   "author": {
     "name": "Gianluca Pengo",
@@ -13,14 +22,18 @@
     "type": "git",
     "url": "https://github.com/gian788/node-box-view"
   },
-  "engines": { "node": ">=0.10" },
+  "engines": {
+    "node": ">=0.10"
+  },
   "dependencies": {
     "request": "*"
   },
-  "devDependencies": {    
+  "devDependencies": {
     "mocha": "*",
     "should": "*"
   },
   "main": "./lib/index.js",
-  "script": { "test": "mocha test/*.test.js"}
+  "script": {
+    "test": "mocha test/*.test.js"
+  }
 }
