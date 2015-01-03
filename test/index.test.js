@@ -4,9 +4,14 @@ var nodeBoxView = require('../lib'),
 	pdfDocPath = './test/docs/test.pdf',
 	pdfUrl = 'https://github.com/gian788/node-box-view/blob/master/test/doc/test.pdf';
 
+
+
 var apiKey = process.argv[2] || process.env.APIKEY;
 
+
 var boxView = new nodeBoxView(apiKey || process.env.APIKEY);
+
+
 
 describe('Testing upload', function () {
 	it('upload file from disk', function (done) {
