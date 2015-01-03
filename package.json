@@ -13,8 +13,14 @@
     "type": "git",
     "url": "https://github.com/gian788/node-box-view"
   },
+  "engines": { "node": ">=0.10" },
   "dependencies": {
     "request": "*"
   },
-  "main": "./index.js"
+  "devDependencies": {    
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "./lib/index.js",
+  "script": { "test": "mocha test/*.test.js"}
 }

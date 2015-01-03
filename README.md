@@ -2,6 +2,8 @@
 
 [Node.js](http://nodejs.org) client library for [Box View API](https://developers.box.com/view/).
 
+[![Build Status](https://travis-ci.org/gian788/node-box-view.png?branch=master)](https://travis-ci.org/gian788/node-box-view)
+
 ### Installation
 ```
 npm install node-box-view
