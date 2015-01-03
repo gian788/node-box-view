@@ -3,8 +3,9 @@ var nodeBoxView = require('../lib'),
 	assert = require('assert'),
 	pdfDocPath = './test/docs/test.pdf',
 	pdfUrl = 'https://github.com/gian788/node-box-view/blob/master/test/doc/test.pdf';
-
+console.log(process.env)
 var apiKey = process.argv[2] || process.env.APIKEY;
+
 
 var boxView = new nodeBoxView(apiKey || process.env.APIKEY);
 
