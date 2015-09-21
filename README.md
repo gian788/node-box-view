@@ -1,6 +1,6 @@
 # Node-box-view
 
-[Node.js](http://nodejs.org) client library for [Box View API](https://developers.box.com/view/).
+[Node.js](http://nodejs.org) client library for [Box View API](https://box-view.readme.io/reference).
 
 [![Build Status](https://travis-ci.org/gian788/node-box-view.png?branch=master)](https://travis-ci.org/gian788/node-box-view)
 
@@ -119,7 +119,7 @@ Thumbnails can have a width between 16 and 1024 pixels and a height between 16 a
 * `documentId (string)` - Document ID.
 * `width (int)` - The width of the thumbnail in pixels, between 16 and 1024
 * `heigth (int)` - The height of the thumbnail in pixels, between 16 and 768
-* `file (string)` - Thumbnail destination file path
+* `file (string)` - PNG thumbnail destination file path (include file name and extention)
 * `callback (function)` - A callback with the following arguments:
 	- an error object or `null`
 	- JSON-parsed response data
