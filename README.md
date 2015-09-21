@@ -15,7 +15,7 @@ npm install node-box-view
 var boxViewLib = require('node-box-view'),
 	boxView = new boxViewLib(YOUR_API_KEY);
 ```
-For general API documentaion, please review the [Box View API Documentation](https://developers.box.com/view).
+For general API documentaion, please review the [Box View API Documentation](https://box-view.readme.io/reference).
 
 ### getList(options, callback)
 Fetches a list of all documents uploaded using this API Key.
